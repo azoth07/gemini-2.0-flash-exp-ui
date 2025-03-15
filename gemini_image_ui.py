@@ -54,41 +54,60 @@ def generate_with_multiple_images(api_key, image1, image2, prompt):
             return None, "请至少上传一张图片！"
         
         # 准备API调用内容
-        contents = [
-            types.Content(
-                role="user",
-                parts=[
-                    types.Part.from_text(text="沙滩"),
-                ],
-            ),
-            types.Content(
-                role="model",
-                parts=[
-                    types.Part.from_uri(
-                        file_uri=files[0].uri,
-                        mime_type=files[0].mime_type,
-                    ),
-                ],
-            ),
-        ]
-        
-        # 添加用户输入的图片和提示
-        user_parts = []
-        for file in files[1:]:  # 跳过第一张已经使用的图片
-            user_parts.append(
-                types.Part.from_uri(
-                    file_uri=file.uri,
-                    mime_type=file.mime_type,
-                )
-            )
-        user_parts.append(types.Part.from_text(text=prompt))
-        
-        contents.append(
-            types.Content(
-                role="user",
-                parts=user_parts,
-            )
-        )
+        if len(files) == 1:
+            # 只有一张图片的情况
+            contents = [
+                types.Content(
+                    role="user",
+                    parts=[
+                        types.Part.from_text(text="沙滩"),
+                    ],
+                ),
+                types.Content(
+                    role="model",
+                    parts=[
+                        types.Part.from_uri(
+                            file_uri=files[0].uri,
+                            mime_type=files[0].mime_type,
+                        ),
+                    ],
+                ),
+                types.Content(
+                    role="user",
+                    parts=[
+                        types.Part.from_text(text=prompt),
+                    ],
+                ),
+            ]
+        else:
+            # 有两张图片的情况，同时使用两张图片作为参考
+            contents = [
+                types.Content(
+                    role="user",
+                    parts=[
+                        types.Part.from_text(text="沙滩"),
+                    ],
+                ),
+                types.Content(
+                    role="model",
+                    parts=[
+                        types.Part.from_uri(
+                            file_uri=files[0].uri,
+                            mime_type=files[0].mime_type,
+                        ),
+                    ],
+                ),
+                types.Content(
+                    role="user",
+                    parts=[
+                        types.Part.from_uri(
+                            file_uri=files[1].uri,
+                            mime_type=files[1].mime_type,
+                        ),
+                        types.Part.from_text(text=prompt),
+                    ],
+                ),
+            ]
         
         # 配置生成参数
         generate_content_config = types.GenerateContentConfig(
