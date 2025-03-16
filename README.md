@@ -2,41 +2,7 @@
 
 这是一个使用Google Gemini AI进行图片生成和修改的Gradio应用程序。
 
-## 使用Docker运行
 
-### 方法1：使用Docker Compose（推荐）
-
-1. 设置环境变量（可选）
-
-```bash
-# Linux/macOS
-export GEMINI_API_KEY=your_api_key_here
-
-# Windows (PowerShell)
-$env:GEMINI_API_KEY="your_api_key_here"
-```
-
-2. 启动容器
-
-```bash
-docker-compose up -d
-```
-
-应用将在 http://localhost:7860 上运行。
-
-### 方法2：使用Docker命令
-
-1. 构建Docker镜像
-
-```bash
-docker build -t gemini-image-ui .
-```
-
-2. 运行Docker容器
-
-```bash
-docker run -p 8000:7860 gemini-image-ui
-```
 
 ## 使用说明
 
