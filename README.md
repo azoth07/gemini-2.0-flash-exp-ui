@@ -65,6 +65,9 @@ python gemini_image_ui_base64.py
 - AI模型：Google Gemini 2.0 Flash
 - 图片处理：PIL (Pillow)
 
+## Demo
+https://gemini.finleye.ai/
+
 ## 实验效果
 prompt：绘制一张图中女孩佩戴饰品的照片
 ![Screenshot 2025-03-15 212001.png](https://s2.loli.net/2025/03/15/VxEz3Rrg2AdYIZ5.png)
