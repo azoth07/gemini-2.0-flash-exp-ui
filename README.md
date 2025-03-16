@@ -3,7 +3,6 @@
 这是一个使用Google Gemini AI进行图片生成和修改的Gradio应用程序。
 
 
-
 ## 使用说明
 
 1. 首先输入您的Gemini API密钥并点击"设置API密钥"
@@ -41,6 +40,8 @@ pip install -r requirements.txt
 
 ```bash
 python gemini_image_ui.py
+# or
+python gemini_image_ui_base64.py
 ```
 
 2. 在浏览器中打开显示的URL（通常是 http://127.0.0.1:7860）

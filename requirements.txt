@@ -1,5 +1,5 @@
-gradio>=4.0.0
+gradio
 Pillow==11.1.0
-google-genai>=0.2.0
+google-genai
 requests>=2.31.0
 nest_asyncio>=1.5.6
