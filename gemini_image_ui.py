@@ -1,11 +1,9 @@
 import os
-import base64
 import tempfile
 import gradio as gr
 from google import genai
 from google.genai import types
 from PIL import Image
-import io
 
 # 设置API密钥
 def set_api_key(api_key):
@@ -374,5 +372,26 @@ def create_ui():
 
 # 主函数
 if __name__ == "__main__":
+    import asyncio
+    import nest_asyncio
+    
+    # 应用nest_asyncio以允许嵌套事件循环
+    nest_asyncio.apply()
+    
+    # 确保有一个事件循环
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    
     app = create_ui()
-    app.launch()
+    app.queue()  # 启用队列处理请求
+    app.launch(
+        server_name="0.0.0.0",
+        server_port=7860,
+        share=False,
+        debug=False,
+        show_error=True,
+        max_threads=40
+    )

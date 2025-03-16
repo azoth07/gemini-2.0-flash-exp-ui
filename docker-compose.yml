@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  gemini-image-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gemini-image-ui
+    ports:
+      - "7860:7860"
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7860/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s 

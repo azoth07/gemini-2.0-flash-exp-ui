@@ -1,6 +1,56 @@
-# Gemini 图片修改工具
+# Gemini 图片生成与修改工具
 
-这是一个基于Gradio的UI界面，用于使用Google的Gemini AI模型生成和修改图片。
+这是一个使用Google Gemini AI进行图片生成和修改的Gradio应用程序。
+
+## 使用Docker运行
+
+### 方法1：使用Docker Compose（推荐）
+
+1. 设置环境变量（可选）
+
+```bash
+# Linux/macOS
+export GEMINI_API_KEY=your_api_key_here
+
+# Windows (PowerShell)
+$env:GEMINI_API_KEY="your_api_key_here"
+```
+
+2. 启动容器
+
+```bash
+docker-compose up -d
+```
+
+应用将在 http://localhost:7860 上运行。
+
+### 方法2：使用Docker命令
+
+1. 构建Docker镜像
+
+```bash
+docker build -t gemini-image-ui .
+```
+
+2. 运行Docker容器
+
+```bash
+docker run -p 8000:7860 gemini-image-ui
+```
+
+## 使用说明
+
+1. 首先输入您的Gemini API密钥并点击"设置API密钥"
+2. 选择功能标签页：
+   - "修改单张图片"：上传一张图片并添加修改提示
+   - "多图片上传"：上传两张图片（第一张必选，第二张可选）并添加提示
+   - "生成新图片"：直接描述要生成的图片
+3. 点击相应的生成按钮，等待Gemini AI处理您的请求
+4. 生成的图片将显示在右侧，同时可能会有文本响应
+
+## 获取Gemini API密钥
+
+您需要从Google AI Studio获取Gemini API密钥：https://makersuite.google.com/app/apikey
 
 ## 功能
 
@@ -36,20 +86,11 @@ python gemini_image_ui.py
    - 在"生成新图片"标签页中，直接输入描述以生成全新图片
    - 点击相应的生成按钮，等待结果显示
 
-## 获取Gemini API密钥
-
-要使用此应用程序，您需要一个有效的Gemini API密钥。您可以通过以下步骤获取：
-
-1. 访问 [Google AI Studio](https://makersuite.google.com/)
-2. 登录您的Google账户
-3. 创建一个新项目或使用现有项目
-4. 在API部分获取您的API密钥
-
 ## 注意事项
 
-- 此应用程序需要互联网连接以访问Gemini API
-- 图片生成和修改可能需要一些时间，请耐心等待
-- 生成的图片质量和准确性取决于您提供的描述/提示的质量
+- 此应用程序需要有效的Gemini API密钥才能运行
+- 生成的图片质量取决于您提供的提示和Gemini模型的能力
+- 临时文件会存储在容器内的/tmp/gemini_images目录中
 
 ## 技术细节
 
