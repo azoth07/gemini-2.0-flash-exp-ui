@@ -65,8 +65,6 @@ pip install -r requirements.txt
 1. Run the application:
 
 ```bash
-python gemini_image_ui.py
-# or
 python gemini_image_ui_base64.py
 ```
 
@@ -82,8 +80,6 @@ python gemini_image_ui_base64.py
 1. 运行应用程序：
 
 ```bash
-python gemini_image_ui.py
-# or
 python gemini_image_ui_base64.py
 ```
 
